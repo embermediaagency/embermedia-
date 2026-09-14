@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ember Media — Elevate Your Real Estate Brand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ember: #3065BE; 
+    --ember-glow: rgba(48, 101, 190, 0.12);
+    --amber: #1E4485; 
+    --bg: #FFFFFF; 
+    --bg2: #F8FAFC; 
+    --bg3: #F1F5F9; 
+    --text: #0F172A; 
+    --text-muted: #64748B; 
+    --border: rgba(48, 101, 190, 0.15); 
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 5vw;
+    border-bottom: 1px solid transparent;
+    transition: background 0.4s, border-color 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-color: var(--border);
+  }
+  
+  /* TOP LOGO SCALING */
+  .logo img {
+    height: 45px;
+    width: auto;
+    display: block;
+  }
+  
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.1em !important;
+    color: var(--ember) !important;
+    border: 1px solid rgba(48, 101, 190, 0.35) !important;
+    padding: 0.55rem 1.25rem;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--ember) !important; color: #fff !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 5vw 8vh;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 60% 80%, rgba(48, 101, 190, 0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 50% at 80% 100%, rgba(30, 68, 133, 0.05) 0%, transparent 60%),
+      linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 60%, #F1F5F9 100%);
+    z-index: 0;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(48, 101, 190, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(48, 101, 190, 0.05) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 30%, rgba(0,0,0,0.5) 70%, transparent 100%);
+    z-index: 0;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 1.8rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px; height: 1px;
+    background: var(--ember);
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 8vw, 8.5rem); 
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+    color: var(--text);
+    opacity: 0;
+    animation: fadeUp 0.9s 0.35s forwards;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--ember);
+    display: block;
+  }
+  .hero-sub {
+    max-width: 620px;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-top: 1.5rem;
+    margin-bottom: 2.8rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.65s forwards;
+  }
+  .btn-primary {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: var(--ember);
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 1px solid var(--ember);
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--amber); transform: translateY(-2px); }
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: transparent;
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    border: 1px solid rgba(15, 23, 42, 0.3);
+    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .btn-ghost:hover { border-color: var(--ember); background: rgba(48, 101, 190, 0.04); transform: translateY(-2px); }
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 5vw;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    opacity: 0;
+    animation: fadeUp 1s 1s forwards;
+  }
+  .scroll-line {
+    width: 1px; height: 48px;
+    background: linear-gradient(180deg, var(--ember), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* ─── SECTION SHARED ─── */
+  section { position: relative; z-index: 1; }
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 5vw;
+  }
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 1.4rem;
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 20px; height: 1px;
+    background: var(--ember);
+  }
+
+  /* ─── PROBLEM SECTION ─── */
+  .section-problem {
+    padding: 10rem 0 8rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(48, 101, 190, 0.03) 50%, transparent 100%);
+  }
+  .problem-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .problem-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    line-height: 1.0;
+    letter-spacing: 0.01em;
+    color: var(--text);
+  }
+  .problem-headline .accent { color: var(--ember); }
+  .problem-body {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.85;
+  }
+  .problem-highlight {
+    margin-top: 2rem;
+    padding: 1.4rem 1.8rem;
+    border-left: 2px solid var(--ember);
+    background: rgba(48, 101, 190, 0.05);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text);
+    font-style: italic;
+    font-family: 'DM Serif Display', serif;
+  }
+
+  /* ─── SERVICES ─── */
+  .section-services { padding: 8rem 0; }
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 5rem;
+  }
+  .services-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    line-height: 0.95;
+  }
+  .services-headline .accent { color: var(--ember); }
+  .services-intro {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.85;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .service-card {
+    background: var(--bg);
+    padding: 2.8rem;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 80% at 0% 100%, rgba(48, 101, 190, 0.05) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .service-card:hover { background: var(--bg2); }
+  .service-card:hover::before { opacity: 1; }
+  .service-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: var(--ember);
+    margin-bottom: 1.2rem;
+  }
+  .service-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
+  }
+  .service-desc {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.8;
+  }
+
+  /* ─── PRICING ─── */
+  .section-pricing {
+    padding: 8rem 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(48, 101, 190, 0.02) 40%, transparent 100%);
+  }
+  .pricing-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .pricing-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.0;
+  }
+  .pricing-headline .accent { color: var(--ember); }
+  .pricing-body {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.85;
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .package-card {
+    border: 1px solid rgba(48, 101, 190, 0.2);
+    background: var(--bg);
+    box-shadow: 0 10px 40px rgba(15, 23, 42, 0.04);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .package-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ember), var(--amber));
+  }
+  .package-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ember);
+    border: 1px solid rgba(48, 101, 190, 0.25);
+    padding: 0.35rem 0.85rem;
+    margin-bottom: 1.5rem;
+    border-radius: 2px;
+  }
+  .package-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .package-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-bottom: 2rem;
+  }
+  .package-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .package-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .feature-dot {
+    width: 6px; height: 6px;
+    min-width: 6px;
+    border-radius: 50%;
+    background: var(--ember);
+    margin-top: 0.55rem;
+  }
+
+  /* ─── PROCESS ─── */
+  .section-process { padding: 8rem 0; }
+  .process-header { margin-bottom: 5rem; }
+  .process-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.0;
+    max-width: 600px;
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 2.2rem;
+    left: calc(16.666% + 0.5rem);
+    right: calc(16.666% + 0.5rem);
+    height: 1px;
+    background: linear-gradient(90deg, var(--ember), rgba(48, 101, 190, 0.15), var(--ember));
+  }
+  .step {
+    padding: 0 2rem 0 0;
+    position: relative;
+  }
+  .step:last-child { padding-right: 0; }
+  .step-number {
+    width: 4.4rem; height: 4.4rem;
+    border-radius: 50%;
+    border: 1px solid rgba(48, 101, 190, 0.3);
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--ember);
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+  }
+  .step:hover .step-number {
+    background: var(--ember);
+    border-color: var(--ember);
+    color: #fff;
+  }
+  .step-label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ember);
+    margin-bottom: 0.7rem;
+  }
+  .step-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.35;
+  }
+  .step-desc {
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.85;
+  }
+
+  /* ─── PORTFOLIO ─── */
+  .section-portfolio { padding: 8rem 0; }
+  .portfolio-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+  .portfolio-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.0;
+  }
+  .portfolio-headline .accent { color: var(--ember); }
+  /* Featured showcase: one large sample reel + a side column (before/after
+     strip + a deliverables checklist) instead of a fixed 3-up video grid —
+     reads as intentional with a single real reel instead of leaving empty
+     "Coming Soon" slots. */
+  .portfolio-showcase {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+  .portfolio-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .portfolio-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .compare-col { display: flex; flex-direction: column; gap: 0.5rem; }
+  .compare-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .compare-frame {
+    aspect-ratio: 9/16;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .compare-frame:hover { border-color: rgba(48, 101, 190, 0.3); background: var(--bg3); }
+  .portfolio-checklist {
+    list-style: none;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    flex: 1;
+  }
+  .portfolio-checklist li {
+    font-size: 0.9rem;
+    color: var(--text);
+    padding-left: 1.6rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .portfolio-checklist li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.45rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ember);
+  }
+  .video-placeholder {
+    aspect-ratio: 9/16;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .video-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(48, 101, 190, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .video-placeholder:hover { border-color: rgba(48, 101, 190, 0.3); background: var(--bg3); }
+  .video-placeholder:hover::before { opacity: 1; }
+  .play-btn {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    border: 1px solid rgba(48, 101, 190, 0.4);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .video-placeholder:hover .play-btn { background: var(--ember); border-color: var(--ember); }
+  .play-icon {
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 9px 0 9px 16px;
+    border-color: transparent transparent transparent var(--ember);
+    margin-left: 3px;
+    transition: border-color 0.3s;
+  }
+  .video-placeholder:hover .play-icon { border-color: transparent transparent transparent #fff; }
+  .video-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ─── FINAL CTA & FORM ─── */
+  .section-cta {
+    padding: 10rem 0 8rem;
+    background: linear-gradient(180deg, var(--bg) 0%, rgba(48, 101, 190, 0.02) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+  .cta-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 0.95;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  .cta-headline .accent { color: var(--ember); }
+  .cta-body {
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    max-width: 450px;
+  }
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .contact-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(15, 23, 42, 0.5);
+  }
+  .contact-value { 
+    font-size: 1rem;
+    font-weight: 500; 
+    color: var(--text); 
+    text-decoration: none; 
+    transition: color 0.2s;
+  }
+  .contact-value:hover { color: var(--ember); }
+
+  /* Form Styling */
+  .contact-form-wrapper {
+    background: #fff;
+    padding: 3rem;
+    border-radius: 4px;
+    border: 1px solid rgba(48, 101, 190, 0.15);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.05);
+  }
+  .form-group { margin-bottom: 1.5rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(15, 23, 42, 0.15);
+    border-radius: 2px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    background: var(--bg2);
+    color: var(--text);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--ember);
+    background: #fff;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg2);
+  }
+  
+  /* FOOTER LOGO SCALING */
+  .footer-brand img {
+    height: 45px; 
+    width: auto;
+    display: block;
+  }
+  
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(15, 23, 42, 0.4);
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 5vw;
+  }
+
+  /* ─── STAT ROW ─── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-item {
+    background: var(--bg);
+    padding: 2.5rem 3rem;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--ember);
+    letter-spacing: 0.02em;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.15); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ─── AMBIENT PARTICLES ─── */
+  .embers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .ember-particle {
+    position: absolute;
+    bottom: -10px;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--ember);
+    animation: riseEmber linear infinite;
+    opacity: 0;
+  }
+  @keyframes riseEmber {
+    0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0.2; }
+    50%  { transform: translateY(-40vh) translateX(15px) scale(1.2); opacity: 0.4; }
+    100% { transform: translateY(-80vh) translateX(-5px) scale(0.8); opacity: 0; }
+  }
+
+  /* ─── MOBILE PHONE OPTIMIZATION ─── */
+  @media (max-width: 768px) {
+    /* Stack all multi-column layouts into a single vertical feed */
+    .problem-layout,
+    .services-grid,
+    .pricing-layout,
+    .steps,
+    .portfolio-showcase,
+    .portfolio-compare,
+    .cta-layout,
+    .stat-row {
+      grid-template-columns: 1fr !important;
+      gap: 3rem;
+    }
+
+    /* Fix spacing and layout for the Process section on mobile */
+    .steps::before {
+      display: none; /* Hides the horizontal connecting line */
+    }
+    .step {
+      padding: 0; /* Removes side padding */
+    }
+
+    /* Adjust padding so sections aren't too far apart on phones */
+    .section-problem, .section-services, .section-pricing, .section-process, .section-portfolio, .section-cta {
+      padding: 5rem 0; 
+    }
+
+    /* Adjust Typography for narrow screens */
+    .hero h1 { font-size: 3.5rem !important; }
+    .hero-sub { font-size: 1rem; }
+    .problem-headline, .services-headline, .pricing-headline, .process-headline, .portfolio-headline, .cta-headline {
+      font-size: 2.8rem !important;
+    }
+
+    /* Simplify the Navigation Bar to prevent overlapping */
+    .nav-links li:not(:last-child) {
+      display: none; /* Hides text links, keeps only the CTA button */
+    }
+    
+    /* Stack the hero buttons */
+    .hero-actions {
+      flex-direction: column;
+    }
+    .hero-actions a {
+      text-align: center;
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="logo">
+    <img src="logo.png" alt="Ember Media Logo">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Packages</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#cta" class="nav-cta">Book a Call</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="embers" id="embers"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Dubai's Premier Real Estate Video Agency</p>
+    <h1>Stop Blending In.<br><em>Elevate Your Brand.</em></h1>
+    <p class="hero-sub">You film the properties. We provide the expertise. High-performance short-form content designed exclusively to position Dubai's top-tier real estate professionals above the competition.</p>
+    <div class="hero-actions">
+      <a href="#portfolio" class="btn-primary">View Our Portfolio</a>
+      <a href="#cta" class="btn-ghost">Book a Strategy Call</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="stat-row">
+  <div class="stat-item reveal">
+    <div class="stat-number">48H</div>
+    <div class="stat-label">Turnaround Time</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <div class="stat-number">8+</div>
+    <div class="stat-label">Videos Per Month</div>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <div class="stat-number">100%</div>
+    <div class="stat-label">Remote Workflow</div>
+  </div>
+</div>
+
+<section class="section-problem" id="about">
+  <div class="section-inner">
+    <div class="problem-layout">
+      <div class="reveal">
+        <p class="section-label">The Challenge</p>
+        <h2 class="problem-headline">In Dubai's Market, <span class="accent">Attention</span> is the Ultimate Asset.</h2>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <p class="problem-body">You have the prime listings. You have the market knowledge. But if your digital presence fails to reflect your authority, you are leaving substantial revenue on the table.</p>
+        <p class="problem-body" style="margin-top:1rem;">Standard property walk-throughs no longer capture audience interest. Modern algorithms demand dynamic, visually stunning content that commands attention and drives conversion.</p>
+        <div class="problem-highlight">That is where we step in.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section-services" id="services">
+  <div class="section-inner">
+    <div class="services-header">
+      <div class="reveal">
+        <p class="section-label">Our Solution</p>
+        <h2 class="services-headline">We Perfect the Content.<br><span class="accent">You Close</span><br>the Deals.</h2>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <p class="services-intro">Ember Media is a specialized post-production agency crafting high-converting video assets for luxury property brokers. You provide the raw footage — we deliver polished, algorithm-optimized content. We manage the post-production process seamlessly so you can focus entirely on your clients.</p>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <div class="service-title">Dynamic Video Editing</div>
+        <p class="service-desc">Strategic cuts and seamless B-roll integration designed to maximize viewer retention. Every frame is intentional, optimizing your reach across all platforms.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-number">02</div>
+        <div class="service-title">High-Converting Captions</div>
+        <p class="service-desc">Professional, stylized subtitles that maintain viewer engagement even with volume disabled. Engineered specifically for high-retention mobile viewing.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-number">03</div>
+        <div class="service-title">Luxury Color Grading</div>
+        <p class="service-desc">Premium visual enhancements ensuring your properties appear as immaculate on screen as they do in person. A cohesive aesthetic that builds immediate brand trust.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-number">04</div>
+        <div class="service-title">Sound Design & Integration</div>
+        <p class="service-desc">Sophisticated implementation of audio and professional soundscapes to elevate the production value and drive shareability among high-net-worth audiences.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pricing" id="pricing">
+  <div class="section-inner">
+    <div class="pricing-layout">
+      <div>
+        <p class="section-label reveal">Packages</p>
+        <h2 class="pricing-headline reveal">Scale Your Brand.<br><span class="accent">Seamlessly.</span></h2>
+        <p class="pricing-body reveal">We offer structured monthly retainers designed to keep high-volume agents consistently visible, completely removing the operational burden of editing.</p>
+      </div>
+
+      <div class="package-card reveal">
+        <span class="package-tag">Most Popular</span>
+        <div class="package-title">The Signature Ember Package</div>
+        <div class="package-sub">Our flagship retainer for top-performing Dubai agents.</div>
+        <ul class="package-features">
+          <li><span class="feature-dot"></span><span>8 High-Impact Short-Form Videos (Reels / TikTok / Shorts)</span></li>
+          <li><span class="feature-dot"></span><span>Dedicated Account Management</span></li>
+          <li><span class="feature-dot"></span><span>48–72 Hour Turnaround Time per batch</span></li>
+          <li><span class="feature-dot"></span><span>Custom Brand Styling &amp; Typography</span></li>
+          <li><span class="feature-dot"></span><span>Streamlined Google Drive Workflow</span></li>
+        </ul>
+        <a href="#cta" class="btn-primary" style="display:inline-block; width:100%; text-align:center;">Claim Your Package Today</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section-process" id="process">
+  <div class="section-inner">
+    <div class="process-header reveal">
+      <p class="section-label">How It Works</p>
+      <h2 class="process-headline">A Workflow Engineered for High-Volume Brokers.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-number">01</div>
+        <div class="step-label">Step One</div>
+        <div class="step-title">The Capture</div>
+        <p class="step-desc">You capture the raw property tours or speaking clips directly on your mobile device. No external camera crews required. Upload assets seamlessly to your dedicated Ember Media cloud directory.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-number">02</div>
+        <div class="step-label">Step Two</div>
+        <div class="step-title">The Edit</div>
+        <p class="step-desc">Our production team grades, cuts, captions, and optimizes your footage. We transform raw clips into sophisticated, algorithm-optimized marketing assets tailored to your brand.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-number">03</div>
+        <div class="step-label">Step Three</div>
+        <div class="step-title">The Launch</div>
+        <p class="step-desc">Receive your polished, deployment-ready videos within 48–72 hours. You publish to your network. You scale your digital footprint. Measurable results, quality leads.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section-portfolio" id="portfolio">
+  <div class="section-inner">
+    <div class="portfolio-header reveal">
+      <div>
+        <p class="section-label">Our Work</p>
+        <h2 class="portfolio-headline">From Raw Footage.<br><span class="accent">To Premium Content.</span></h2>
+      </div>
+    </div>
+
+    <div class="portfolio-showcase">
+      <div class="video-placeholder reveal" id="portfolio-featured">
+        <div class="play-btn"><div class="play-icon"></div></div>
+        <div class="video-label">Sample Production &mdash; Luxury Villa</div>
+      </div>
+
+      <div class="portfolio-side">
+        <div class="portfolio-compare reveal reveal-delay-1">
+          <div class="compare-col">
+            <span class="compare-tag">Before</span>
+            <div class="compare-frame">Raw phone footage, as shot by the agent</div>
+          </div>
+          <div class="compare-col">
+            <span class="compare-tag">After</span>
+            <div class="compare-frame">Same footage, Ember Media edit</div>
+          </div>
+        </div>
+
+        <ul class="portfolio-checklist reveal reveal-delay-2">
+          <li>Cinematic color grade on every clip</li>
+          <li>Branded lower-third &amp; per-room detail overlays</li>
+          <li>Platform-safe captions, cut 9:16 for Reels/TikTok/Shorts</li>
+          <li>48&ndash;72hr turnaround, zero editing on your end</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-cta" id="cta">
+  <div class="section-inner">
+    <div class="cta-layout">
+      
+      <div class="reveal">
+        <p class="section-label">Get Started</p>
+        <h2 class="cta-headline">Ready to Dominate the <span class="accent">Market?</span></h2>
+        <p class="cta-body">Stop losing market share to competitors with superior marketing. Submit your details below, or reach out directly to learn how Ember Media can streamline your content production.</p>
+        
+        <div class="contact-info">
+          <div class="contact-item">
+            <span class="contact-label">Direct Email</span>
+            <a href="mailto:hello@embermedia.agency" class="contact-value">hello@embermedia.agency</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">WhatsApp</span>
+            <a href="https://wa.me/971566534547" class="contact-value" target="_blank" rel="noopener noreferrer">+971 56 653 4547</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <div class="contact-form-wrapper">
+          <form name="Ember Contact" method="POST" data-netlify="true" action="/">
+            <input type="hidden" name="form-name" value="Ember Contact" />
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" required placeholder="John Doe">
+            </div>
+            <div class="form-group">
+              <label for="business">Business / Agency Name</label>
+              <input type="text" id="business" name="business" placeholder="E.g. Emaar Properties">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required placeholder="john@example.com">
+            </div>
+            <div class="form-group">
+              <label for="message">Additional Details</label>
+              <textarea id="message" name="message" rows="4" required placeholder="Tell us about your current content volume and goals..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%;">Submit Inquiry</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <img src="logo.png" alt="Ember Media">
+  </div>
+  <div class="footer-copy">© 2026 Ember Media. All rights reserved.</div>
+</footer>
+
+<script>
+  // Sticky nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Ambient Particles
+  const container = document.getElementById('embers');
+  const cols = ['#3065BE', '#4A7FDB', '#1E4485', '#EBF0F5'];
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'ember-particle';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      animation-duration: ${8 + Math.random() * 10}s;
+      animation-delay: ${Math.random() * 12}s;
+      background: ${cols[Math.floor(Math.random()*cols.length)]};
+      width: ${2 + Math.random() * 3}px;
+      height: ${2 + Math.random() * 3}px;
+      opacity: 0;
+    `;
+    container.appendChild(p);
+  }
+</script>
+</body>
+</html>
