@@ -263,7 +263,7 @@
 
   /* ─── PROBLEM SECTION ─── */
   .section-problem {
-    padding: 10rem 0 8rem;
+    padding: 7rem 0 6rem;
     background: linear-gradient(180deg, transparent 0%, rgba(48, 101, 190, 0.03) 50%, transparent 100%);
   }
   .problem-layout {
@@ -299,7 +299,7 @@
   }
 
   /* ─── SERVICES ─── */
-  .section-services { padding: 8rem 0; }
+  .section-services { padding: 6rem 0; }
   .services-header {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -367,7 +367,7 @@
 
   /* ─── PRICING ─── */
   .section-pricing {
-    padding: 8rem 0;
+    padding: 6rem 0;
     background: linear-gradient(180deg, transparent 0%, rgba(48, 101, 190, 0.02) 40%, transparent 100%);
   }
   .pricing-layout {
@@ -454,7 +454,7 @@
   }
 
   /* ─── PROCESS ─── */
-  .section-process { padding: 8rem 0; }
+  .section-process { padding: 6rem 0; }
   .process-header { margin-bottom: 5rem; }
   .process-headline {
     font-family: 'Bebas Neue', sans-serif;
@@ -528,7 +528,7 @@
   }
 
   /* ─── PORTFOLIO ─── */
-  .section-portfolio { padding: 8rem 0; }
+  .section-portfolio { padding: 6rem 0; }
   .portfolio-header {
     display: flex;
     align-items: flex-end;
@@ -686,7 +686,7 @@
 
   /* ─── FINAL CTA & FORM ─── */
   .section-cta {
-    padding: 10rem 0 8rem;
+    padding: 7rem 0 6rem;
     background: linear-gradient(180deg, var(--bg) 0%, rgba(48, 101, 190, 0.02) 100%);
     position: relative;
     overflow: hidden;
@@ -780,20 +780,52 @@
   /* ─── FOOTER ─── */
   footer {
     border-top: 1px solid var(--border);
-    padding: 2rem 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 3.5rem 5vw 2rem;
     background: var(--bg2);
   }
-  
+  .footer-main {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+    padding-bottom: 2.5rem;
+  }
+
   /* FOOTER LOGO SCALING */
   .footer-brand img {
-    height: 45px; 
+    height: 45px;
     width: auto;
     display: block;
   }
-  
+  .footer-tagline {
+    margin-top: 0.9rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    max-width: 22ch;
+  }
+  .footer-nav, .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .footer-nav a, .footer-contact a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-nav a:hover, .footer-contact a:hover { color: var(--ember); }
+  .footer-bottom {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
   .footer-copy {
     font-size: 0.75rem;
     color: rgba(15, 23, 42, 0.4);
@@ -1195,10 +1227,25 @@
 </section>
 
 <footer>
-  <div class="footer-brand">
-    <img src="logo.png" alt="Ember Media">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <img src="logo.png" alt="Ember Media">
+      <p class="footer-tagline">Dubai's Premier Real Estate Video Agency</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="#services">Services</a>
+      <a href="#pricing">Packages</a>
+      <a href="#process">How It Works</a>
+      <a href="#portfolio">Portfolio</a>
+    </nav>
+    <div class="footer-contact">
+      <a href="mailto:hello@embermedia.agency">hello@embermedia.agency</a>
+      <a href="https://wa.me/971566534547">+971 56 653 4547</a>
+    </div>
   </div>
-  <div class="footer-copy">© 2026 Ember Media. All rights reserved.</div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 Ember Media. All rights reserved.</div>
+  </div>
 </footer>
 
 <script>
