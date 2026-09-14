@@ -635,9 +635,29 @@
     background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(48, 101, 190, 0.05), transparent);
     opacity: 0;
     transition: opacity 0.4s;
+    z-index: 1;
   }
   .video-placeholder:hover { border-color: rgba(48, 101, 190, 0.3); background: var(--bg3); }
   .video-placeholder:hover::before { opacity: 1; }
+  .video-placeholder video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .video-placeholder .play-btn,
+  .video-placeholder .video-label {
+    position: relative;
+    z-index: 2;
+    transition: opacity 0.3s;
+  }
+  .video-placeholder.is-playing .play-btn,
+  .video-placeholder.is-playing .video-label,
+  .video-placeholder.is-playing::before {
+    opacity: 0;
+    pointer-events: none;
+  }
   .play-btn {
     width: 56px; height: 56px;
     border-radius: 50%;
@@ -1088,6 +1108,9 @@
 
     <div class="portfolio-showcase">
       <div class="video-placeholder reveal" id="portfolio-featured">
+        <video id="portfolio-featured-video" playsinline preload="metadata" poster="media/rashid-sample-poster.jpg">
+          <source src="media/rashid-sample-web.mp4" type="video/mp4">
+        </video>
         <div class="play-btn"><div class="play-icon"></div></div>
         <div class="video-label">Sample Production &mdash; Luxury Villa</div>
       </div>
@@ -1190,6 +1213,21 @@
     });
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
+
+  // Portfolio featured video — click the card to play the sample reel in place
+  const featuredCard = document.getElementById('portfolio-featured');
+  const featuredVideo = document.getElementById('portfolio-featured-video');
+  if (featuredCard && featuredVideo) {
+    featuredCard.addEventListener('click', () => {
+      featuredCard.classList.add('is-playing');
+      featuredVideo.controls = true;
+      featuredVideo.play();
+    });
+    featuredVideo.addEventListener('pause', () => {
+      if (featuredVideo.currentTime > 0 && !featuredVideo.ended) return;
+      featuredCard.classList.remove('is-playing');
+    });
+  }
 
   // Ambient Particles
   const container = document.getElementById('embers');
