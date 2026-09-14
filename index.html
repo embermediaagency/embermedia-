@@ -573,20 +573,16 @@
     aspect-ratio: 9/16;
     background: var(--bg2);
     border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0.75rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: border-color 0.3s, background 0.3s;
+    overflow: hidden;
+    transition: border-color 0.3s;
   }
-  .compare-frame:hover { border-color: rgba(48, 101, 190, 0.3); background: var(--bg3); }
+  .compare-frame:hover { border-color: rgba(48, 101, 190, 0.3); }
+  .compare-frame video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
   .portfolio-checklist {
     list-style: none;
     background: var(--bg2);
@@ -1119,11 +1115,21 @@
         <div class="portfolio-compare reveal reveal-delay-1">
           <div class="compare-col">
             <span class="compare-tag">Before</span>
-            <div class="compare-frame">Raw phone footage, as shot by the agent</div>
+            <div class="compare-frame">
+              <video autoplay muted loop playsinline preload="auto">
+                <source src="media/compare-before.mp4" type="video/mp4">
+                Raw phone footage, as shot by the agent
+              </video>
+            </div>
           </div>
           <div class="compare-col">
             <span class="compare-tag">After</span>
-            <div class="compare-frame">Same footage, Ember Media edit</div>
+            <div class="compare-frame">
+              <video autoplay muted loop playsinline preload="auto">
+                <source src="media/compare-after.mp4" type="video/mp4">
+                Same footage, Ember Media edit
+              </video>
+            </div>
           </div>
         </div>
 
