@@ -976,6 +976,24 @@
       text-align: center;
       width: 100%;
     }
+
+    /* Footer: force a clean single-column stack instead of relying on
+       flex-wrap, which can leave uneven gaps at narrow widths */
+    .footer-main {
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    /* Package card padding was tuned for desktop; too tight on phones */
+    .package-card { padding: 2rem 1.5rem; }
+
+    /* Portfolio checklist same padding fix */
+    .portfolio-checklist { padding: 1.25rem; }
   }
 </style>
 </head>
@@ -996,7 +1014,8 @@
 
 <section class="hero" id="hero">
   <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="media/hero-poster.jpg">
-    <source src="media/hero-reel.mp4" type="video/mp4">
+    <source media="(min-width: 769px)" src="media/hero-reel.mp4" type="video/mp4">
+    <source src="media/rashid-sample-web.mp4" type="video/mp4">
   </video>
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
